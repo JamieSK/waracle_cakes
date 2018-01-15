@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import CakeList from './components/CakeList';
+// import CakeList from './components/CakeList';
+import AddCake from './components/AddCake';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cakes: []
+      cakes: [],
+      newCake: {
+        name: 'thing',
+        comment: 'stuff',
+        imageUrl: 'picture',
+        yumFactor: 1
+      }
     };
+    this.saveCake = this.saveCake.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -24,9 +33,28 @@ class App extends Component {
     request.send();
   }
 
+  saveCake(event) {
+    event.preventDefault();
+
+    
+  }
+
+  handleInputChange(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+    let newCake = {...this.state.newCake};
+    newCake[key] = value;
+    this.setState({newCake: newCake});
+  }
+
   render() {
     return (
-      <CakeList cakes={this.state.cakes} />
+      <AddCake
+        saveCake={this.saveCake}
+        handleInputChange={this.handleInputChange}
+        newCake={this.state.newCake}
+      />
+      // <CakeList cakes={this.state.cakes} />
     );
   }
 }
