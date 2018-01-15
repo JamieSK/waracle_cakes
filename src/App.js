@@ -11,10 +11,10 @@ class App extends Component {
       page: 'cakes',
       cakes: [],
       newCake: {
-        name: 'Rubik\'s cake',
-        comment: 'Unsolveable',
-        imageUrl: 'https://static.boredpanda.com/blog/wp-content/uploads/2017/03/rubiks-cube-cake-pastry-cedric-grolet-17-58dcf71b65cef__700.jpg',
-        yumFactor: 4
+        name: '',
+        comment: '',
+        imageUrl: '',
+        yumFactor: 1
       },
       detailCake: 0
     };
