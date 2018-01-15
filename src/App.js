@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import CakeList from './components/CakeList';
+import CakeList from './components/CakeList';
 import AddCake from './components/AddCake';
 import './App.css';
 
@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      page: 'cakes',
       cakes: [],
       newCake: {
         name: 'Rubik\'s cake',
@@ -52,14 +53,22 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <AddCake
-        saveCake={this.saveCake}
-        handleInputChange={this.handleInputChange}
-        newCake={this.state.newCake}
-      />
-      // <CakeList cakes={this.state.cakes} />
-    );
+    switch (this.state.page) {
+      case 'cakes':
+        return <CakeList cakes={this.state.cakes} />;
+      case 'addCake':
+        return (
+          <AddCake
+            saveCake={this.saveCake}
+            handleInputChange={this.handleInputChange}
+            newCake={this.state.newCake}
+          />
+        );
+      case 'cakeDetails':
+        return null;
+      default:
+        return null;
+  }
   }
 }
 
