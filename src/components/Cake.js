@@ -3,7 +3,7 @@ import '../css/cake.css';
 
 const Cake = ({name, imageUrl}) => {
   return (
-    <div>
+    <div className='cake-div'>
       <h3>{name}</h3>
       <img src={imageUrl} alt={`${name}`} className="cake-image"/>
     </div>
