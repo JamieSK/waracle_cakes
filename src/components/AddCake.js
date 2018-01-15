@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/addCake.css'
 
 const AddCake = ({saveCake, handleInputChange, newCake}) => {
   return (
@@ -12,7 +13,7 @@ const AddCake = ({saveCake, handleInputChange, newCake}) => {
           value={newCake.name}
           onChange={handleInputChange}
         />
-
+        <br/>
         <label htmlFor="cake-comment">Comment:</label>
         <input
           id="cake-comment"
@@ -21,7 +22,7 @@ const AddCake = ({saveCake, handleInputChange, newCake}) => {
           value={newCake.comment}
           onChange={handleInputChange}
         />
-
+        <br/>
         <label htmlFor="cake-image">Image:</label>
         <input
           id="cake-image"
@@ -30,7 +31,7 @@ const AddCake = ({saveCake, handleInputChange, newCake}) => {
           value={newCake.imageUrl}
           onChange={handleInputChange}
         />
-
+        <br/>
         <label htmlFor="cake-rating">Yum Factor:</label>
         <select
           name="yumFactor"
@@ -44,7 +45,7 @@ const AddCake = ({saveCake, handleInputChange, newCake}) => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-
+        <br/>
         <input type="submit" value="Save"/>
       </form>
     </div>

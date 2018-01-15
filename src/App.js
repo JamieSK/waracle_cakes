@@ -18,6 +18,7 @@ class App extends Component {
     };
     this.saveCake = this.saveCake.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.goToAddCake = this.goToAddCake.bind(this);
   }
 
   componentDidMount() {
@@ -34,8 +35,13 @@ class App extends Component {
     request.send();
   }
 
+  goToAddCake() {
+    this.setState({page: 'addCake'});
+  }
+
   saveCake(event) {
     event.preventDefault();
+    this.setState({page: 'cakes'});
 
     const url = "http://ec2-52-209-201-89.eu-west-1.compute.amazonaws.com:5000/api/cakes";
     const request = new XMLHttpRequest();
@@ -55,7 +61,12 @@ class App extends Component {
   render() {
     switch (this.state.page) {
       case 'cakes':
-        return <CakeList cakes={this.state.cakes} />;
+        return (
+          <React.Fragment>
+            <button onClick={this.goToAddCake}>Add Cake</button>
+            <CakeList cakes={this.state.cakes} />
+          </React.Fragment>
+        );
       case 'addCake':
         return (
           <AddCake
