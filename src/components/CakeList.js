@@ -2,9 +2,16 @@ import React from 'react';
 import Cake from './Cake';
 import '../css/cakeList.css';
 
-const CakeList = ({cakes}) => {
-  cakes = cakes.map(cake => {
-    return <Cake name={cake.name} imageUrl={cake.imageUrl} key={cake.id} />
+const CakeList = ({cakes, cakeDetails}) => {
+  cakes = cakes.map((cake, index) => {
+    return (
+      <Cake
+        name={cake.name}
+        imageUrl={cake.imageUrl}
+        key={cake.id}
+        onClick={() => cakeDetails(index)}
+      />
+    )
   });
 
   return (
