@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CakeList from './components/CakeList';
 import AddCake from './components/AddCake';
+import CakeDetails from './components/CakeDetails';
 import './App.css';
 
 class App extends Component {
@@ -10,15 +11,18 @@ class App extends Component {
       page: 'cakes',
       cakes: [],
       newCake: {
-        name: 'Rubik\'s cake',
-        comment: 'Unsolveable',
-        imageUrl: 'https://static.boredpanda.com/blog/wp-content/uploads/2017/03/rubiks-cube-cake-pastry-cedric-grolet-17-58dcf71b65cef__700.jpg',
-        yumFactor: 4
-      }
+        name: '',
+        comment: '',
+        imageUrl: '',
+        yumFactor: 1
+      },
+      detailCake: 0
     };
     this.saveCake = this.saveCake.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.goToAddCake = this.goToAddCake.bind(this);
+    this.goToCakeDetails = this.goToCakeDetails.bind(this);
+    this.goToAllCakes = this.goToAllCakes.bind(this);
   }
 
   componentDidMount() {
@@ -35,8 +39,19 @@ class App extends Component {
     request.send();
   }
 
+  goToAllCakes() {
+    this.setState({page: 'cakes'});
+  }
+
   goToAddCake() {
     this.setState({page: 'addCake'});
+  }
+
+  goToCakeDetails(id) {
+    this.setState({
+      page: 'cakeDetails',
+      detailCake: id
+    });
   }
 
   saveCake(event) {
@@ -64,7 +79,10 @@ class App extends Component {
         return (
           <React.Fragment>
             <button onClick={this.goToAddCake}>Add Cake</button>
-            <CakeList cakes={this.state.cakes} />
+            <CakeList
+              cakes={this.state.cakes}
+              cakeDetails={this.goToCakeDetails}
+            />
           </React.Fragment>
         );
       case 'addCake':
@@ -76,7 +94,12 @@ class App extends Component {
           />
         );
       case 'cakeDetails':
-        return null;
+        return (
+          <CakeDetails
+            cake={this.state.cakes[this.state.detailCake]}
+            goToAllCakes={this.goToAllCakes}
+          />
+        );
       default:
         return null;
   }
